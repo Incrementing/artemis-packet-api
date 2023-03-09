@@ -1,12 +1,12 @@
 package cc.ghast.packet.buffer.types.minecraft;
 
-import ac.artemis.packet.minecraft.inventory.ItemStack;
 import ac.artemis.packet.protocol.ProtocolVersion;
 import cc.ghast.packet.buffer.BufConverter;
 import cc.ghast.packet.buffer.types.Converters;
 import cc.ghast.packet.wrapper.nbt.WrappedItem;
 import cc.ghast.packet.wrapper.netty.MutableByteBuf;
 import cc.ghast.packet.reflections.ReflectUtil;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
 
@@ -27,6 +27,7 @@ public class ItemStackConverter extends BufConverter<ItemStack> {
         } else {
             buffer.writeShort(value.getType().getId());
             buffer.writeByte(value.getAmount());
+
             // Todo Fix this
             Converters.NMS_NBT.write(buffer, ReflectUtil.getCompoundTagFromItem(value));
         }
